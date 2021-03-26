@@ -677,57 +677,6 @@ def handle_message(event):
         return 0   
         
 ###############################################################################
-        #user_message='輪播模板訊息QA'
-    elif user_message.find('QA') != -1:         #判斷用戶使否傳來"QA"關鍵字，若為是則觸發本區段。 
-        
-        res_message = TemplateSendMessage(
-            alt_text='本訊息為【QA】',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url='https://www.nups.ntnu.edu.tw/upfiles/univ-expo/%E5%8D%97%E9%83%A8/%E9%AB%98%E9%9B%84%E5%B8%82/%E6%8A%80%E5%B0%88%E6%A0%A1%E9%99%A2/%E6%96%87%E8%97%BB/%E6%96%87%E8%97%BB-pic04.jpg',
-                        title='QA-單位選擇-教務處',
-                        text='請選擇你要詢問的處室!',
-                        actions=[
-                            MessageTemplateAction(
-                                label='註冊組 Registration Section',
-                                text='註冊組 Registration Section'
-                            ),
-                            MessageTemplateAction(
-                                label='課務組 Curriculum Section',
-                                text='課務組 Curriculum Section'
-                            ),
-                            URITemplateAction(
-                                label='英/外語能力診斷輔導中心',
-                                text='英/外語能力診斷輔導中心'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://www.nups.ntnu.edu.tw/upfiles/univ-expo/%E5%8D%97%E9%83%A8/%E9%AB%98%E9%9B%84%E5%B8%82/%E6%8A%80%E5%B0%88%E6%A0%A1%E9%99%A2/%E6%96%87%E8%97%BB/%E6%96%87%E8%97%BB-pic02.jpg',
-                        title='QA-單位選擇-學生事務處',
-                        text='請選擇你要詢問的處室!',
-                        actions=[
-                            MessageTemplateAction(
-                                label='軍訓室',
-                                text='軍訓室'
-                            ),
-                            MessageTemplateAction(
-                                label='生活輔導組',
-                                text='生活輔導組'
-                            )
-                        ]
-                    )
-# =============================================================================                    
-                ]
-            )
-        )
-
-        line_bot_api.reply_message(event.reply_token,res_message)
-
-        return 0
-
-###############################################################################
     elif user_message.find('輪播圖') != -1:
         
         return 0
