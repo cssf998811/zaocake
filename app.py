@@ -5,6 +5,7 @@ Created on Fri Aug 21 22:05:00 2020
 @author: peishuo
 """
 
+import os
 import json
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
@@ -16,11 +17,14 @@ import random
 app = Flask(__name__)
 
 
-line_bot_api = LineBotApi('hhl6WLNzN1yGeFCORGSYI6R01pVb5sqk/kU8h/T/upnYkfc6zwtvORa7udac8um0E6sSNScQriZTxSZF3qYoh4ge+OqafdaH4Nbl2IKCD7Np8bw4KeBUQhm8eMWNe7o8u0lDAMA8TWRylU+AsGCHRQdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi(
+    'hhl6WLNzN1yGeFCORGSYI6R01pVb5sqk/kU8h/T/upnYkfc6zwtvORa7udac8um0E6sSNScQriZTxSZF3qYoh4ge+OqafdaH4Nbl2IKCD7Np8bw4KeBUQhm8eMWNe7o8u0lDAMA8TWRylU+AsGCHRQdB04t89/1O/w1cDnyilFU=')
 
 handler = WebhookHandler('f72b22612a5bd49d398ada8e74cb0ab5')
 
-line_bot_api.push_message('U0aeb28721a45f9e371e60c9b2b6babbe', TextSendMessage(text='系統測試中，若您覺得訊息干擾到您，您可以將聊天室設為靜音，謝謝喔！'))
+line_bot_api.push_message('U0aeb28721a45f9e371e60c9b2b6babbe', TextSendMessage(
+    text='系統測試中，若您覺得訊息干擾到您，您可以將聊天室設為靜音，謝謝喔！'))
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -41,24 +45,25 @@ def callback():
     return 'OK'
 
 ######################處理LINE USER 傳來得訊息 ###############################
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     # get user id when reply
-    
-    profile = line_bot_api.get_profile(event.source.user_id)
-    nameid = profile.display_name     #使用者名稱
-    uid = profile.user_id             #使用者ID  
-    user_message=str(event.message.text) 
-    
 
-        #user_message='圖文訊息'
-    if user_message.find('圖文訊息') != -1:    
-        
+    profile = line_bot_api.get_profile(event.source.user_id)
+    nameid = profile.display_name  # 使用者名稱
+    uid = profile.user_id  # 使用者ID
+    user_message = str(event.message.text)
+
+    # user_message='圖文訊息'
+    if user_message.find('圖文訊息') != -1:
+
         res_message = TemplateSendMessage(
             alt_text='圖文訊息',
-            template = CarouselTemplate(
+            template=CarouselTemplate(
                 columns=[
-#-----------------------------------------------------------------------------                    
+                    # -----------------------------------------------------------------------------
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='圖文訊息選單',
@@ -77,8 +82,8 @@ def handle_message(event):
                                 text='影片訊息'
                             ),
                         ]
-                    ),                                          
-# =============================================================================
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='圖文訊息選單',
@@ -97,8 +102,8 @@ def handle_message(event):
                                 text='貼圖訊息'
                             ),
                         ]
-                    ),                                          
-# =============================================================================
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='圖文訊息選單',
@@ -117,8 +122,8 @@ def handle_message(event):
                                 text='輪播模板訊息'
                             ),
                         ]
-                    ),                                          
-# =============================================================================
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='圖文訊息選單',
@@ -137,87 +142,88 @@ def handle_message(event):
                                 text='教材尚在開發中'
                             ),
                         ]
-                    ),                                          
-# =============================================================================        
-                 ]            
+                    ),
+                    # =============================================================================
+                ]
             )
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-        #user_message='文字訊息'
-    elif user_message.find('文字訊息') != -1:         #判斷用戶使否傳來"文字訊息"關鍵字，若為是則觸發本區段。   
-        
-        res_message = TextSendMessage(text='歡迎使用文藻E點通，您選擇的是文字測試訊息，您目前看到的是【文字訊息】的回覆方式。')        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+        # user_message='文字訊息'
+    elif user_message.find('文字訊息') != -1:  # 判斷用戶使否傳來"文字訊息"關鍵字，若為是則觸發本區段。
+
+        res_message = TextSendMessage(
+            text='歡迎使用文藻E點通，您選擇的是文字測試訊息，您目前看到的是【文字訊息】的回覆方式。')
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-    elif user_message.find('圖片訊息') != -1 :         #判斷用戶使否傳來"圖片訊息"關鍵字，若為是則觸發本區段。  
-        
+    elif user_message.find('圖片訊息') != -1:  # 判斷用戶使否傳來"圖片訊息"關鍵字，若為是則觸發本區段。
+
         res_message = ImageSendMessage(
             original_content_url='https://cdn2.ettoday.net/images/3053/3053944.jpg',
             preview_image_url='https://cdn2.ettoday.net/images/3053/3053944.jpg'
         )
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0  
-    
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-        #user_message='影片訊息'
-    elif user_message.find('影片訊息') != -1:         #判斷用戶使否傳來"影片訊息"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='影片訊息'
+    elif user_message.find('影片訊息') != -1:  # 判斷用戶使否傳來"影片訊息"關鍵字，若為是則觸發本區段。
+
         res_message = VideoSendMessage(
             original_content_url='https://r5---sn-npoe7n7r.googlevideo.com/videoplayback?expire=1612879931&ei=20MiYIfkBIyWiwTEhrSQBQ&ip=144.202.56.145&id=o-ANCIwAp79OWJyLwTkkaRuKvMzGSf6gsljTB-wPAcLNh5&itag=22&source=youtube&requiressl=yes&vprv=1&mime=video%2Fmp4&ns=6LcWIDtZWbxjYUXS1Dod_vIF&ratebypass=yes&dur=328.423&lmt=1572331630804319&fvip=5&c=WEB&txp=2216222&n=fRjt_f_oTJeD95i&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAMXkWqUW9UIIMrcCJZ8dh_xZ7nWpUlNVWd4sdw2JHME4AiAKGxqLL5z6kL30RkfuW-mCUVIwWmqG1nPPOo0_PbecxA%3D%3D&redirect_counter=1&cm2rm=sn-vgqe7s76&req_id=3b1b213d3dba3ee&cms_redirect=yes&mh=ww&mip=182.234.79.223&mm=34&mn=sn-npoe7n7r&ms=ltu&mt=1612858827&mv=m&mvi=5&pl=18&lsparams=mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRAIgXT3f533nuXNJnQlehCh9ePDKFQtHpmkoWKAN1IzsJsgCIBtOmjBzv9DrdIWDtPjsHRSZXLCFcjAZN1zQSqWOHGEM',
             preview_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fmvQXV2wh96fqQjSJ5KZXRUjprXHH9zG2EVFLuExV-Uxl1sN2AQ76RIN8Cy6A0COCT4FvQg9YRzqNujWkrxwA3kgGLcAOtsupqBi0JCqx4HUQuMqR8KMJ6CRQ7FBSJ3JLHfYv04V_BFmQAMFQIrWgvsg=w958-h539'
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-        #user_message='音訊訊息'
-    elif user_message.find('音訊訊息') != -1:         #判斷用戶使否傳來"音訊訊息"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='音訊訊息'
+    elif user_message.find('音訊訊息') != -1:  # 判斷用戶使否傳來"音訊訊息"關鍵字，若為是則觸發本區段。
+
         res_message = message = AudioSendMessage(
             original_content_url='https://r5---sn-npoe7n7r.googlevideo.com/videoplayback?expire=1612879931&ei=20MiYIfkBIyWiwTEhrSQBQ&ip=144.202.56.145&id=o-ANCIwAp79OWJyLwTkkaRuKvMzGSf6gsljTB-wPAcLNh5&itag=140&source=youtube&requiressl=yes&vprv=1&mime=audio%2Fmp4&ns=vL6EbYMqRar6wkILnGFdM6sF&gir=yes&clen=5315836&otfp=1&dur=328.423&lmt=1572331593044296&fvip=5&keepalive=yes&c=WEB&txp=2211222&n=jinyYfcO0NUsfzO&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAL1zzZOOX4qwpMs5f8cTrPvw7OLcoFlrx7IoNt4qKE_jAiA7W2Xce4BnGqfOPsuzNGEVGudGIMhqHBb5d40qsKMjdQ%3D%3D&ratebypass=yes&redirect_counter=1&cm2rm=sn-vgqe7s76&req_id=a0e283de1a31a3ee&cms_redirect=yes&mh=ww&mip=182.234.79.223&mm=34&mn=sn-npoe7n7r&ms=ltu&mt=1612858105&mv=m&mvi=5&pl=18&lsparams=mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIhANHX1USrlIJC8IXts4LcHkOClswgQoSKtfv-bBU76R7VAiB8SAfZxTgonssKfxUs6FL8O8Q5wn5cnL2r_OSUuKtjRQ%3D%3D',
             duration=328000
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-        #user_message='位置訊息'
-    elif user_message.find('位置訊息') != -1:         #判斷用戶使否傳來"位置訊息"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='位置訊息'
+    elif user_message.find('位置訊息') != -1:  # 判斷用戶使否傳來"位置訊息"關鍵字，若為是則觸發本區段。
+
         res_message = LocationSendMessage(
             title='文藻外語大學',
             address='80793高雄市三民區民族一路900號',
             latitude=22.6704067,
             longitude=120.3191348
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-        #user_message='貼圖訊息'
-    elif user_message.find('貼圖訊息') != -1:         #判斷用戶使否傳來"貼圖訊息"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='貼圖訊息'
+    elif user_message.find('貼圖訊息') != -1:  # 判斷用戶使否傳來"貼圖訊息"關鍵字，若為是則觸發本區段。
+
         res_message = StickerSendMessage(
             package_id='11539',
             sticker_id='52114116'
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
+
+        line_bot_api.reply_message(event.reply_token, res_message)
         return 0
 
 ###############################################################################
-        #user_message='按鈕介面訊息'
-    elif user_message.find('按鈕介面訊息') != -1:         #判斷用戶使否傳來"按鈕介面訊息"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='按鈕介面訊息'
+    elif user_message.find('按鈕介面訊息') != -1:  # 判斷用戶使否傳來"按鈕介面訊息"關鍵字，若為是則觸發本區段。
+
         res_message = TemplateSendMessage(
             alt_text='按鈕介面訊息',
             template=ButtonsTemplate(
@@ -237,14 +243,14 @@ def handle_message(event):
             )
         )
 
-        line_bot_api.reply_message(event.reply_token,res_message)
+        line_bot_api.reply_message(event.reply_token, res_message)
 
         return 0
-    
+
 ###############################################################################
-        #user_message='確認介面訊息'
-    elif user_message.find('確認介面訊息') != -1:         #判斷用戶使否傳來"確認介面訊息"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='確認介面訊息'
+    elif user_message.find('確認介面訊息') != -1:  # 判斷用戶使否傳來"確認介面訊息"關鍵字，若為是則觸發本區段。
+
         res_message = TemplateSendMessage(
             alt_text='本訊息為【確認介面訊息】',
             template=ConfirmTemplate(
@@ -261,15 +267,15 @@ def handle_message(event):
                 ]
             )
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
+
+        line_bot_api.reply_message(event.reply_token, res_message)
 
         return 0
-    
+
 ###############################################################################
-        #user_message='輪播模板訊息'
-    elif user_message.find('輪播模板訊息') != -1:         #判斷用戶使否傳來"輪播模板訊息"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='輪播模板訊息'
+    elif user_message.find('輪播模板訊息') != -1:  # 判斷用戶使否傳來"輪播模板訊息"關鍵字，若為是則觸發本區段。
+
         res_message = TemplateSendMessage(
             alt_text='本訊息為【輪播模板訊息】',
             template=CarouselTemplate(
@@ -316,14 +322,14 @@ def handle_message(event):
             )
         )
 
-        line_bot_api.reply_message(event.reply_token,res_message)
+        line_bot_api.reply_message(event.reply_token, res_message)
 
         return 0
-    
+
 ###############################################################################
-        #user_message='輪播圖模板訊息'
-    elif user_message.find('輪播圖模板訊息') != -1:         #判斷用戶使否傳來"輪播圖模板訊息"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='輪播圖模板訊息'
+    elif user_message.find('輪播圖模板訊息') != -1:  # 判斷用戶使否傳來"輪播圖模板訊息"關鍵字，若為是則觸發本區段。
+
         res_message = TemplateSendMessage(
             alt_text='本訊息為【輪播圖模板訊息】',
             template=ImageCarouselTemplate(
@@ -347,20 +353,21 @@ def handle_message(event):
                 ]
             )
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
+
+        line_bot_api.reply_message(event.reply_token, res_message)
 
         return 0
-    
+
 ###############################################################################
-        #user_message='相關網頁->學術單位'
-    elif user_message.find('相關網頁->學術單位') != -1:         #判斷用戶使否傳來"相關網頁->學術單位"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='相關網頁->學術單位'
+    # 判斷用戶使否傳來"相關網頁->學術單位"關鍵字，若為是則觸發本區段。
+    elif user_message.find('相關網頁->學術單位') != -1:
+
         res_message = TemplateSendMessage(
             alt_text='相關網頁->學術單位',
-            template = CarouselTemplate(
+            template=CarouselTemplate(
                 columns=[
-#-----------------------------------------------------------------------------                    
+                    # -----------------------------------------------------------------------------
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='學術單位',
@@ -379,8 +386,8 @@ def handle_message(event):
                                 uri='http://c030.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='學術單位',
@@ -399,8 +406,8 @@ def handle_message(event):
                                 uri='http://c022.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================  
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='學術單位',
@@ -419,8 +426,8 @@ def handle_message(event):
                                 uri='http://c025.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================  
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='學術單位',
@@ -439,8 +446,8 @@ def handle_message(event):
                                 uri='http://c032.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================  
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='學術單位',
@@ -459,24 +466,25 @@ def handle_message(event):
                                 uri='http://c034.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================    
-                 ]            
+                    ),
+                    # =============================================================================
+                ]
             )
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-        #user_message='相關網頁->行政單位'
-    elif user_message.find('相關網頁->行政單位') != -1:         #判斷用戶使否傳來"相關網頁->行政單位"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='相關網頁->行政單位'
+    # 判斷用戶使否傳來"相關網頁->行政單位"關鍵字，若為是則觸發本區段。
+    elif user_message.find('相關網頁->行政單位') != -1:
+
         res_message = TemplateSendMessage(
             alt_text='相關網頁->行政單位',
-            template = CarouselTemplate(
+            template=CarouselTemplate(
                 columns=[
-#-----------------------------------------------------------------------------                    
+                    # -----------------------------------------------------------------------------
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='行政單位',
@@ -495,8 +503,8 @@ def handle_message(event):
                                 uri='https://c008.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='行政單位',
@@ -515,8 +523,8 @@ def handle_message(event):
                                 uri='https://c016.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================  
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='行政單位',
@@ -535,8 +543,8 @@ def handle_message(event):
                                 uri='https://c007.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================  
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='行政單位',
@@ -555,8 +563,8 @@ def handle_message(event):
                                 uri='https://c009.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================  
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='行政單位',
@@ -575,24 +583,25 @@ def handle_message(event):
                                 uri='https://c014.wzu.edu.tw/'
                             ),
                         ]
-                    ),                                          
-# =============================================================================  
-                 ]            
+                    ),
+                    # =============================================================================
+                ]
             )
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-        #user_message='相關網頁->常用網頁'
-    elif user_message.find('相關網頁->常用網頁') != -1:         #判斷用戶使否傳來"相關網頁->常用網頁"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='相關網頁->常用網頁'
+    # 判斷用戶使否傳來"相關網頁->常用網頁"關鍵字，若為是則觸發本區段。
+    elif user_message.find('相關網頁->常用網頁') != -1:
+
         res_message = TemplateSendMessage(
             alt_text='相關網頁->常用網頁',
-            template = CarouselTemplate(
+            template=CarouselTemplate(
                 columns=[
-#-----------------------------------------------------------------------------                    
+                    # -----------------------------------------------------------------------------
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='常用網頁',
@@ -611,8 +620,8 @@ def handle_message(event):
                                 uri='https://sso.wzu.edu.tw/Portal/login.htm'
                             ),
                         ]
-                    ),                                          
-# =============================================================================
+                    ),
+                    # =============================================================================
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='常用網頁',
@@ -631,24 +640,24 @@ def handle_message(event):
                                 uri='http://ma.wzu.edu.tw/bin/home.php'
                             ),
                         ]
-                    ),                                          
-# =============================================================================   
-                 ]            
+                    ),
+                    # =============================================================================
+                ]
             )
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
-        #user_message='相關網頁'
-    elif user_message.find('相關網頁') != -1:         #判斷用戶使否傳來"相關網頁"關鍵字，若為是則觸發本區段。 
-        
+        # user_message='相關網頁'
+    elif user_message.find('相關網頁') != -1:  # 判斷用戶使否傳來"相關網頁"關鍵字，若為是則觸發本區段。
+
         res_message = TemplateSendMessage(
             alt_text='相關網頁',
-            template = CarouselTemplate(
+            template=CarouselTemplate(
                 columns=[
-#-----------------------------------------------------------------------------                    
+                    # -----------------------------------------------------------------------------
                     CarouselColumn(
                         # thumbnail_image_url='',
                         title='請選擇您想查找的頁面',
@@ -667,40 +676,144 @@ def handle_message(event):
                                 text='相關網頁->常用網頁'
                             )
                         ]
-                    ),                                          
-# =============================================================================
-                 ]            
+                    ),
+                    # =============================================================================
+                ]
             )
         )
-        
-        line_bot_api.reply_message(event.reply_token,res_message)
-        return 0   
-        
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+
 ###############################################################################
     elif user_message.find('輪播圖') != -1:
-        
+
         return 0
 ###############################################################################
     elif user_message.find('您剛剛點擊了') != -1:
-        
+
         return 0
 ###############################################################################
     elif user_message.find('教材尚在開發中') != -1:
-        
+
         return 0
 ###############################################################################
     elif user_message.find('我要離開對話') != -1:
-        response='好的，期待您下次的呼喚，再見！'
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(response))
-        
+        response = '好的，期待您下次的呼喚，再見！'
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(response))
+
+        return 0
+
+
+###############################################################################
+# QAsection start
+###############################################################################
+    elif user_message.find('QA') != -1:
+
+        res_message = TemplateSendMessage(
+            alt_text='QA',
+            template=CarouselTemplate(
+                columns=[
+                    # -----------------------------------------------------------------------------
+                    CarouselColumn(
+                        # thumbnail_image_url='',
+                        title='QA主選單',
+                        text='請由下方選出您想詢問的處室！',
+                        actions=[
+                            MessageTemplateAction(
+                                label='教務處',
+                                text='教務處'
+                            ),
+                            MessageTemplateAction(
+                                label='學生事務處',
+                                text='學生事務處'
+                            ),
+                        ]
+                    ),
+                    # =============================================================================
+                ]
+            )
+        )
+
+        line_bot_api.reply_message(event.reply_token, res_message)
         return 0
 ###############################################################################
-    else:
-        response='我不太了解您的意思，建議您透過選單與我互動唷！'
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(response))
+    elif user_message.find('教務處') != -1:
+
+        res_message = TemplateSendMessage(
+            alt_text='教務處',
+            template=CarouselTemplate(
+                columns=[
+                    # -----------------------------------------------------------------------------
+                    CarouselColumn(
+                        # thumbnail_image_url='',
+                        title='教務處組別選擇',
+                        text='請由下方選出您想詢問的組別！',
+                        actions=[
+                            MessageTemplateAction(
+                                label='註冊組',
+                                text='註冊組'
+                            ),
+                            MessageTemplateAction(
+                                label='課務組',
+                                text='課務組'
+                            ),
+                            MessageTemplateAction(
+                                label='英/外語能力診斷輔導中心',
+                                text='英/外語能力診斷輔導中心'
+                            ),
+                        ]
+                    ),
+                    # =============================================================================
+                ]
+            )
+        )
+
+        line_bot_api.reply_message(event.reply_token, res_message)
         return 0
-        
-    
+###############################################################################
+    elif user_message.find('學生事務處') != -1:
+
+        res_message = TemplateSendMessage(
+            alt_text='學生事務處',
+            template=CarouselTemplate(
+                columns=[
+                    # -----------------------------------------------------------------------------
+                    CarouselColumn(
+                        # thumbnail_image_url='',
+                        title='學生事務處組別選擇',
+                        text='請由下方選出您想詢問的組別！',
+                        actions=[
+                            MessageTemplateAction(
+                                label='軍訓室',
+                                text='軍訓室'
+                            ),
+                            MessageTemplateAction(
+                                label='生活輔導組',
+                                text='生活輔導組'
+                            ),
+                        ]
+                    ),
+                    # =============================================================================
+                ]
+            )
+        )
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+        return 0
+###############################################################################
+# QAsection end
+###############################################################################
+
+
+###############################################################################
+    else:
+        response = '我不太了解您的意思，建議您透過選單與我互動唷！'
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(response))
+        return 0
+
     # user_id = event.source.user_id
     # print("user_id =", user_id)
 
@@ -709,9 +822,7 @@ def handle_message(event):
     #     TextSendMessage(text=event.message.text))
 
 
-
 ###############################################################################
-import os
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 27017))
