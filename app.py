@@ -774,7 +774,6 @@ def handle_message(event):
 
         line_bot_api.reply_message(event.reply_token, res_message)
         return 0
-
 ###############################################################################
     # 學務處組別次選單
     elif user_message.find('學生事務處') != -1:
@@ -821,15 +820,15 @@ def handle_message(event):
                         text='請由下方選出您想詢問的問題種類！',
                         actions=[
                             MessageTemplateAction(
-                                label='註冊 Registration',
+                                label='註冊',
                                 text='註冊'
                             ),
                             MessageTemplateAction(
-                                label='學籍變更 Change of Student Status',
+                                label='學籍變更',
                                 text='學籍變更'
                             ),
                             MessageTemplateAction(
-                                label='證明文件申請 Application of Documents',
+                                label='證明文件申請',
                                 text='證明文件申請'
                             ),
                         ]
@@ -841,15 +840,15 @@ def handle_message(event):
                         text='請由下方選出您想詢問的問題種類！',
                         actions=[
                             MessageTemplateAction(
-                                label='輔系、雙主修及學程 Minor,Double Major and Program',
+                                label='輔系、雙主修及學程',
                                 text='輔系、雙主修及學程'
                             ),
                             MessageTemplateAction(
-                                label='學分、成績 Credits, Grades',
+                                label='學分、成績',
                                 text='學分、成績'
                             ),
                             MessageTemplateAction(
-                                label='畢業 Graduation',
+                                label='畢業',
                                 text='畢業'
                             ),
                         ]
@@ -861,7 +860,7 @@ def handle_message(event):
                         text='請由下方選出您想詢問的問題種類！',
                         actions=[
                             MessageTemplateAction(
-                                label='其他問題 Other Questions',
+                                label='其他問題',
                                 text='其他問題'
                             ),
                         ]
