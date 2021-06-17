@@ -718,7 +718,7 @@ def handle_message(event):
                 columns=[
                     # -----------------------------------------------------------------------------
                     CarouselColumn(
-                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3dJczDs5FyidldjRQnyJLIRr2P6iuT1598rAOdKrg_9vks2pTHBcsQviEBDH8-mGcm_boFRV_g-H2lZbTtXoJRrnDX9FKwEW29WjrpsOvn9-bF_wuyPoOIkFZG6DwB00uuaL0KvfJI1eoogQR7mqF1F=w1322-h881-no?authuser=0',
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3eSgOf643kIOlRZNxwC4_uzxig16p8eLQZepeRwluGRk-nMOpyqgaV-bQLgwMQCLAcr7PEepULqnXvgfR224HDXWZ0GgTjyIVrfoUEIFV-LfbWugGQHBgI5mQHHSDKJ9cD0GZYo9SwSNuTKLBoUM3Zu=w1262-h881-no?authuser=0',
                         title='請問有什麼地方可以為您服務的嗎?',
                         text='請由下方選出您想詢問的問題！',
                         actions=[
@@ -745,7 +745,7 @@ def handle_message(event):
         return 0
         
 ###############################################################################
-    # 藻咖啡次選單
+    # 關於藻咖啡次選單
     elif user_message.find('關於藻咖啡') != -1:
 
         res_message = TemplateSendMessage(
@@ -754,37 +754,18 @@ def handle_message(event):
                 columns=[
                     # -----------------------------------------------------------------------------
                     CarouselColumn(
-                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cDzKbCPSDJ_ZCajYL49Hrj7DDNveYDptOGh_GiKKyvVlhOqG5uTsHNURZjAYY7KH7TikO9xWizPEvEmXzoG7CqsW2zfcBXy9CujNrFqnWRkMneLrA2jHoPinweGcEcrsdONf3uAA4FfXGOWvpTImtE=w1322-h881-no?authuser=0',
-                        title='Zao Coffee',
-                        text='提供舒適的環境、安心食材。保證使用公平貿易咖啡豆、小農鮮乳、100%純蜂蜜',
-                        actions=[
-                            MessageTemplateAction(
-                                label='服務設施',
-                                text='服務設施'
-                            ),
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cIM5qNLW47CuySyVxAiY37Uuc2KDTybTOHXg3bh4mE3ekNiJ9tvTuyzp96j8FQLr08r6iyUdW8gnyF6wD_bDfhl_-EDcsMfpbjusWZ0tK_rPV4s86N1iWTCsmn0rmfv-Cj-PMG_Ay5IbypRjXvmhJV=w1175-h881-no?authuser=0',
-                        title='Zao Coffee',
-                        text='提供舒適的環境、安心食材。保證使用公平貿易咖啡豆、小農鮮乳、100%純蜂蜜',
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3dJczDs5FyidldjRQnyJLIRr2P6iuT1598rAOdKrg_9vks2pTHBcsQviEBDH8-mGcm_boFRV_g-H2lZbTtXoJRrnDX9FKwEW29WjrpsOvn9-bF_wuyPoOIkFZG6DwB00uuaL0KvfJI1eoogQR7mqF1F=w1322-h881-no?authuser=0',
+                        title='服務設施',
+                        text='每人低消一杯飲料，免費提供WIFI、插座，不限使用時間',
                         actions=[
                             MessageTemplateAction(
                                 label='店內環境',
                                 text='店內環境'
                             ),
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fkAZpb2VtIn3pQLuqhvgQeELdFW4nZ3sNH7YKhCHuNPQGcVoGWZHc2jQ0vDr_2_kqAXnbTlwengVVdBYgcT-Tyf_TcYjiM1-9KHI9aTbVKKGgXMHaxDuAfM92RHmhT5zy_rq9cilgHFo3pN8oBmQuS=w1334-h882-no?authuser=0',
-                        title='Zao Coffee',
-                        text='提供舒適的環境、安心食材。保證使用公平貿易咖啡豆、小農鮮乳、100%純蜂蜜',
-                        actions=[
                             MessageTemplateAction(
                                 label='看看菜單',
                                 text='看看菜單'
                             ),
-                        ]
                     ),
                     # =============================================================================
                 ]
@@ -793,62 +774,32 @@ def handle_message(event):
 
         line_bot_api.reply_message(event.reply_token, res_message)
         return 0
-###############################################################################
-    # 服務設施 圖+文
-    elif user_message.find('服務設施') != -1:
-
-        res_message = TemplateSendMessage(
-            alt_text='服務設施',
-            template=ImageCarouselTemplate(
-                columns=[
-                    ImageCarouselColumn(
-                        image_url='https://lh3.googleusercontent.com/pw/ACtC-3dJczDs5FyidldjRQnyJLIRr2P6iuT1598rAOdKrg_9vks2pTHBcsQviEBDH8-mGcm_boFRV_g-H2lZbTtXoJRrnDX9FKwEW29WjrpsOvn9-bF_wuyPoOIkFZG6DwB00uuaL0KvfJI1eoogQR7mqF1F=w1322-h881-no?authuser=0',
-                        action=PostbackTemplateAction(
-                            label='服務設施',
-                            text='最低消費：一杯飲料 / 每人\nWIFI：免費提供\n插座：免費提供\n時間限制：不限時間\n攜帶寵物：可\n團體座位：最多 6 人',
-                            data=''
-                        )
-                    ),
-                ]
-            )
-        )
-
-        line_bot_api.reply_message(event.reply_token, res_message)
-
-        return 0
         
 ###############################################################################
-    # 店內環境 圖+文
+    # 店內環境 圖+標題
     elif user_message.find('店內環境') != -1:
 
         res_message = TemplateSendMessage(
             alt_text='店內環境',
-            template=ImageCarouselTemplate(
+            template=CarouselTemplate(
                 columns=[
-                    ImageCarouselColumn(
-                        image_url='https://lh3.googleusercontent.com/pw/ACtC-3cDzKbCPSDJ_ZCajYL49Hrj7DDNveYDptOGh_GiKKyvVlhOqG5uTsHNURZjAYY7KH7TikO9xWizPEvEmXzoG7CqsW2zfcBXy9CujNrFqnWRkMneLrA2jHoPinweGcEcrsdONf3uAA4FfXGOWvpTImtE=w1322-h881-no?authuser=0',
-                        action=PostbackTemplateAction(
-                            label='寬敞桌面',
-                            text='',
-                            data=''
-                        )
+                    # -----------------------------------------------------------------------------
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cDzKbCPSDJ_ZCajYL49Hrj7DDNveYDptOGh_GiKKyvVlhOqG5uTsHNURZjAYY7KH7TikO9xWizPEvEmXzoG7CqsW2zfcBXy9CujNrFqnWRkMneLrA2jHoPinweGcEcrsdONf3uAA4FfXGOWvpTImtE=w1322-h881-no?authuser=0',
+                        title='寬敞桌面',
+                        # text='',
                     ),
-                    ImageCarouselColumn(
-                        image_url='https://lh3.googleusercontent.com/pw/ACtC-3cIM5qNLW47CuySyVxAiY37Uuc2KDTybTOHXg3bh4mE3ekNiJ9tvTuyzp96j8FQLr08r6iyUdW8gnyF6wD_bDfhl_-EDcsMfpbjusWZ0tK_rPV4s86N1iWTCsmn0rmfv-Cj-PMG_Ay5IbypRjXvmhJV=w1175-h881-no?authuser=0',
-                        action=PostbackTemplateAction(
-                            label='溫馨氣氛',
-                            text='',
-                            data=''
-                        )
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cIM5qNLW47CuySyVxAiY37Uuc2KDTybTOHXg3bh4mE3ekNiJ9tvTuyzp96j8FQLr08r6iyUdW8gnyF6wD_bDfhl_-EDcsMfpbjusWZ0tK_rPV4s86N1iWTCsmn0rmfv-Cj-PMG_Ay5IbypRjXvmhJV=w1175-h881-no?authuser=0',
+                        title='溫馨氣氛',
+                        # text='',
                     ),
-                    ImageCarouselColumn(
-                        image_url='https://lh3.googleusercontent.com/pw/ACtC-3fkAZpb2VtIn3pQLuqhvgQeELdFW4nZ3sNH7YKhCHuNPQGcVoGWZHc2jQ0vDr_2_kqAXnbTlwengVVdBYgcT-Tyf_TcYjiM1-9KHI9aTbVKKGgXMHaxDuAfM92RHmhT5zy_rq9cilgHFo3pN8oBmQuS=w1334-h882-no?authuser=0',
-                        action=PostbackTemplateAction(
-                            label='優美環境',
-                            text='',
-                            data=''
-                        )
-                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fkAZpb2VtIn3pQLuqhvgQeELdFW4nZ3sNH7YKhCHuNPQGcVoGWZHc2jQ0vDr_2_kqAXnbTlwengVVdBYgcT-Tyf_TcYjiM1-9KHI9aTbVKKGgXMHaxDuAfM92RHmhT5zy_rq9cilgHFo3pN8oBmQuS=w1334-h882-no?authuser=0',
+                        title='優美環境',
+                        # text='',
+                    ),                                        
+                    # =============================================================================
                 ]
             )
         )
@@ -856,6 +807,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, res_message)
 
         return 0
+
 ###############################################################################
 # QAsection end
 ###############################################################################
