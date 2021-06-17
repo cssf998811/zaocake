@@ -755,8 +755,8 @@ def handle_message(event):
                     # -----------------------------------------------------------------------------
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3dJczDs5FyidldjRQnyJLIRr2P6iuT1598rAOdKrg_9vks2pTHBcsQviEBDH8-mGcm_boFRV_g-H2lZbTtXoJRrnDX9FKwEW29WjrpsOvn9-bF_wuyPoOIkFZG6DwB00uuaL0KvfJI1eoogQR7mqF1F=w1322-h881-no?authuser=0',
-                        title='服務設施',
-                        text='每人低消一杯飲料，免費提供WIFI、插座，不限使用時間',
+                        title='藻咖啡',
+                        text='提供舒適的環境、安心食材。',
                         actions=[
                             MessageTemplateAction(
                                 label='店內環境',
@@ -788,18 +788,168 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cDzKbCPSDJ_ZCajYL49Hrj7DDNveYDptOGh_GiKKyvVlhOqG5uTsHNURZjAYY7KH7TikO9xWizPEvEmXzoG7CqsW2zfcBXy9CujNrFqnWRkMneLrA2jHoPinweGcEcrsdONf3uAA4FfXGOWvpTImtE=w1322-h881-no?authuser=0',
                         title='寬敞桌面',
-                        # text='',
+                        text='內用區提供許多插座，讓你可以悠閒的喝杯咖啡做自己的事情',
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cIM5qNLW47CuySyVxAiY37Uuc2KDTybTOHXg3bh4mE3ekNiJ9tvTuyzp96j8FQLr08r6iyUdW8gnyF6wD_bDfhl_-EDcsMfpbjusWZ0tK_rPV4s86N1iWTCsmn0rmfv-Cj-PMG_Ay5IbypRjXvmhJV=w1175-h881-no?authuser=0',
                         title='溫馨氣氛',
-                        # text='',
+                        text='精心設計的內部裝潢給妳溫馨的氣氛度過一整天。',
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fkAZpb2VtIn3pQLuqhvgQeELdFW4nZ3sNH7YKhCHuNPQGcVoGWZHc2jQ0vDr_2_kqAXnbTlwengVVdBYgcT-Tyf_TcYjiM1-9KHI9aTbVKKGgXMHaxDuAfM92RHmhT5zy_rq9cilgHFo3pN8oBmQuS=w1334-h882-no?authuser=0',
-                        title='優美環境',
-                        # text='',
+                        title='簡潔環境',
+                        text='簡化生活上的繁瑣，帶給你不同看待生活的方式',
                     ),                                        
+                    # =============================================================================
+                ]
+            )
+        )
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+
+        return 0
+
+###############################################################################
+    # 看看菜單 圖+選擇
+    elif user_message.find('看看菜單') != -1:
+
+        res_message = TemplateSendMessage(
+            alt_text='看看菜單',
+            template=CarouselTemplate(
+                columns=[
+                    # -----------------------------------------------------------------------------
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3erhuBjVXhel4y6yA1C1D0IjgJcdpnmGzXgcSn6fDneB45ReYFEHZEVS3QDd7-gdS2veVVcG8nR3bzCirJ4f0ixCsS1rvSFj0un8zmLayttpZcDADx0D0u0fPzCnLHzQ0BbuWRmZMU4xCAq-vxpXmrV=w1102-h881-no?authuser=0',
+                        title='咖啡類',
+                        text='精品手工咖啡',
+                        actions=[
+                            MessageTemplateAction(
+                                label='看看咖啡菜單',
+                                text='看看咖啡菜單'
+                            ),
+                        ]                        
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cRdI4bWrWn9OWla6J_aV0Em5bkfHZRDPJW01fCzYqN9HxbXkuVNLst3qfWbep2gvrl0yTtD83iNzlIN6XD8HntwnjKgm5aNgvBiMr9Ez-xXByNSOD4mxzNS0eTg-GP5V2ckrEtpaGrhWqMbf2uOrVy=w1419-h881-no?authuser=0',
+                        title='果汁類',
+                        text='果汁特調',
+                        actions=[
+                            MessageTemplateAction(
+                                label='看看果汁菜單',
+                                text='看看果汁菜單'
+                            ),
+                        ]                        
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fs_gKwwubXrSxZX2PL-fO8s250hWd0GUz626v1fx4mp3DNQTZZHv3oukP3RGQ0RnUQISUatjcSy0jfhPor10aJ6zm3dC8iCAwNno00PyljXJ4CuKrs-U0DhTnv-dn_4FYi8MVGt7HqSBG-_4AoHUGg=w1541-h881-no?authuser=0',
+                        title='甜點類',
+                        text='下午茶輕食',
+                        actions=[
+                            MessageTemplateAction(
+                                label='看看甜點菜單',
+                                text='看看甜點菜單'
+                            ),
+                        ]                        
+                    ),                                    
+                    # =============================================================================
+                ]
+            )
+        )
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+
+        return 0
+
+###############################################################################
+    # 看看咖啡菜單 圖+標題
+    elif user_message.find('看看咖啡菜單') != -1:
+
+        res_message = TemplateSendMessage(
+            alt_text='看看咖啡菜單',
+            template=CarouselTemplate(
+                columns=[
+                    # -----------------------------------------------------------------------------
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cH60McsBbJympAfwSisoSwoU7w1c0EYKgg1_8HF5qM7K8VopQPFoKjqQiZ7Y_OXuMKC4M0lvB2RrcgBELTtWcKNRb1iREPk0fhRnbY9-aTHc67u4fpMclfWCHNcAZYWhrskDgcoz1_dWLRz-lMimrU=w1322-h881-no?authuser=0',
+                        title='美式黑咖啡',
+                        text='冰/熱 NT$ 110',
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fE6LowEQ1H-2PvIYslUpMvxny5ESML890w29Egc66AnXKURoPBuZO7lN7qUAJ-DmJrb22OnYCM9G3g0Cvz7s-p75yXL4x8n7LYp68mVidYIB64E_6dIrWaU0N0WqIS554fIMu7gWaubymv3pK6WEWI=w1322-h882-no?authuser=0',
+                        title='拿鐵咖啡',
+                        text='冰/熱 NT$ 140',
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3c9tBJdawbOtyfAKEKfZj0NCy49E-Lb88ZmF0Y_NqrrZL_JLYnELa4fvds52W1AgYlI0pBCvJglrH__ewOq88I0HJQGdEU0-IYjqepeVxf6XUgWFLu8gpoX6mIQObE2oE2ZS-0DsO7cjE3LcRMZxPQo=w1226-h881-no?authuser=0',
+                        title='焦糖瑪奇朵',
+                        text='冰/熱 NT$ 160',
+                    ),                                      
+                    # =============================================================================
+                ]
+            )
+        )
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+
+        return 0
+        
+###############################################################################
+    # 看看果汁菜單 圖+標題
+    elif user_message.find('看看果汁菜單') != -1:
+
+        res_message = TemplateSendMessage(
+            alt_text='看看果汁菜單',
+            template=CarouselTemplate(
+                columns=[
+                    # -----------------------------------------------------------------------------
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cRbnNSKT0cNwjJFvKTs69Vyjnhd6UshI8yUmvmcgiJoLBSFkqbu642xG_lzg6y8SsHnBSgTrEJZqJGCq_bCcEi6egFWGraM4j7XarQMMWUfC9f5hlh2uVx1CFaIonQiR5jo4ZPHvP4rnndi42Dsr6l=w1322-h881-no?authuser=0',
+                        title='鮮草莓牛奶',
+                        text='冰 NT$ 120',
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fyNH7AxPFSRwPL3ODeHltevTW0JVMQIS4EXYjh2_7WrC6SEGtcD0-zO3Fe9fw1u1rfg1LkXHrJijQQ84qahHUx2MIt5c-fjScTJzTnfoKKyjlpUfYEaiQ9Bbax3wfwp6qdqCYtKD1u_2pdZI-KunVK=w1322-h882-no?authuser=0',
+                        title='蘋果蘇打',
+                        text='冰 NT$ 100',
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3egd4uanIt6MeVyviSOnpQBG70yFOHz1nwK2qojtnHQYIDv2I1NMyKkK5BGtHRfA2anySvEzIwKOUKHJpWkJXez1NkvITZMxzp7hpJ1i6HNuOBEJHQ1lRhsXvtJ3t_T8wYN8cyz5loke7j163K_miT4=w1322-h881-no?authuser=0',
+                        title='葡萄香檳',
+                        text='冰 NT$ 140',
+                    ),                                      
+                    # =============================================================================
+                ]
+            )
+        )
+
+        line_bot_api.reply_message(event.reply_token, res_message)
+
+        return 0
+
+###############################################################################
+    # 看看甜點菜單 圖+標題
+    elif user_message.find('看看甜點菜單') != -1:
+
+        res_message = TemplateSendMessage(
+            alt_text='看看甜點菜單',
+            template=CarouselTemplate(
+                columns=[
+                    # -----------------------------------------------------------------------------
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cGz84PikMg1eds-6rUlWIOonBiuxJQ1tYYdUNkhvhFcZo4a0bGjU_qw19XClEk-gLAoZ8UVoOQRwQyicgHiWvquoych899nCNClJWwzSpNgFpnX1uHb1eRSsGFwc9UeyR-45rCVYJMsi2-HnkFeK40=w1322-h881-no?authuser=0',
+                        title='重乳酪蛋糕',
+                        text='NT$ 80',
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3doRdXaRT0U9rTm7OkCLmud1FLZbtozMheA9_-bj-YTk9qoXrlrKo6qqJvfFyDBaRdh6rjR7MnpfL4mBAAvhTv34sH--O2Jl8x_Wl9ZHhbsLpQvqZe4NzhntcufD4zFyJtbCx_U6Hz1u277WAQBmmU3=w1326-h882-no?authuser=0',
+                        title='布朗尼',
+                        text='NT$ 60',
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fPJaC-esphfrLd3p3GVbd_JGuP5mqgfrKQOGtKmRm-OihMdux8NdDD_qRZPe8etvAimXwS1lDQJjIwW2tGqM6DGpcp8zptai2r-tfZFMAcJO8k285nJbWWrMgRT5LpT7uEm4TtzXh9P3VBiAKOkby9=w1175-h881-no?authuser=0',
+                        title='莓果鬆餅',
+                        text='NT$ 100',
+                    ),                                      
                     # =============================================================================
                 ]
             )
