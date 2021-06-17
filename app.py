@@ -710,7 +710,7 @@ def handle_message(event):
 # QAsection start
 ###############################################################################
     # QA主選單
-    elif user_message.find('qa') != -1:
+    elif user_message.find('QA') != -1:
 
         res_message = TemplateSendMessage(
             alt_text='歡迎光臨 Zao Coffee',
@@ -718,7 +718,7 @@ def handle_message(event):
                 columns=[
                     # -----------------------------------------------------------------------------
                     CarouselColumn(
-                        # thumbnail_image_url='',
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3dJczDs5FyidldjRQnyJLIRr2P6iuT1598rAOdKrg_9vks2pTHBcsQviEBDH8-mGcm_boFRV_g-H2lZbTtXoJRrnDX9FKwEW29WjrpsOvn9-bF_wuyPoOIkFZG6DwB00uuaL0KvfJI1eoogQR7mqF1F=w1322-h881-no?authuser=0',
                         title='請問有什麼地方可以為您服務的嗎?',
                         text='請由下方選出您想詢問的問題！',
                         actions=[
@@ -743,6 +743,7 @@ def handle_message(event):
 
         line_bot_api.reply_message(event.reply_token, res_message)
         return 0
+        
 ###############################################################################
     # 藻咖啡次選單
     elif user_message.find('關於藻咖啡') != -1:
@@ -753,18 +754,32 @@ def handle_message(event):
                 columns=[
                     # -----------------------------------------------------------------------------
                     CarouselColumn(
-                        # thumbnail_image_url='',
-                        title='BotBonnie Coffee 提供舒適的環境、安心食材。',
-                        text='使用公平貿易咖啡豆、小農鮮乳、100%純蜂蜜',
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cDzKbCPSDJ_ZCajYL49Hrj7DDNveYDptOGh_GiKKyvVlhOqG5uTsHNURZjAYY7KH7TikO9xWizPEvEmXzoG7CqsW2zfcBXy9CujNrFqnWRkMneLrA2jHoPinweGcEcrsdONf3uAA4FfXGOWvpTImtE=w1322-h881-no?authuser=0',
+                        title='Zao Coffee',
+                        text='提供舒適的環境、安心食材。保證使用公平貿易咖啡豆、小農鮮乳、100%純蜂蜜',
                         actions=[
                             MessageTemplateAction(
                                 label='服務設施',
                                 text='服務設施'
                             ),
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cIM5qNLW47CuySyVxAiY37Uuc2KDTybTOHXg3bh4mE3ekNiJ9tvTuyzp96j8FQLr08r6iyUdW8gnyF6wD_bDfhl_-EDcsMfpbjusWZ0tK_rPV4s86N1iWTCsmn0rmfv-Cj-PMG_Ay5IbypRjXvmhJV=w1175-h881-no?authuser=0',
+                        title='Zao Coffee',
+                        text='提供舒適的環境、安心食材。保證使用公平貿易咖啡豆、小農鮮乳、100%純蜂蜜',
+                        actions=[
                             MessageTemplateAction(
                                 label='店內環境',
                                 text='店內環境'
                             ),
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fkAZpb2VtIn3pQLuqhvgQeELdFW4nZ3sNH7YKhCHuNPQGcVoGWZHc2jQ0vDr_2_kqAXnbTlwengVVdBYgcT-Tyf_TcYjiM1-9KHI9aTbVKKGgXMHaxDuAfM92RHmhT5zy_rq9cilgHFo3pN8oBmQuS=w1334-h882-no?authuser=0',
+                        title='Zao Coffee',
+                        text='提供舒適的環境、安心食材。保證使用公平貿易咖啡豆、小農鮮乳、100%純蜂蜜',
+                        actions=[
                             MessageTemplateAction(
                                 label='看看菜單',
                                 text='看看菜單'
@@ -801,6 +816,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, res_message)
 
         return 0
+        
 ###############################################################################
     # 店內環境 圖+文
     elif user_message.find('店內環境') != -1:
