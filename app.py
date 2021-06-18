@@ -723,8 +723,8 @@ def handle_message(event):
                         text='請由下方選出您想詢問的問題！',
                         actions=[
                             MessageTemplateAction(
-                                label='關於藻咖啡',
-                                text='關於藻咖啡'
+                                label='本店特色',
+                                text='本店特色'
                             ),
                             MessageTemplateAction(
                                 label='看看菜單',
@@ -745,11 +745,11 @@ def handle_message(event):
         return 0
         
 ###############################################################################
-    # 關於藻咖啡次選單
-    elif user_message.find('關於藻咖啡') != -1:
+    # 本店特色次選單
+    elif user_message.find('本店特色') != -1:
 
         res_message = TemplateSendMessage(
-            alt_text='關於藻咖啡',
+            alt_text='本店特色',
             template=CarouselTemplate(
                 columns=[
                     # -----------------------------------------------------------------------------
@@ -889,7 +889,7 @@ def handle_message(event):
                     # -----------------------------------------------------------------------------
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cH60McsBbJympAfwSisoSwoU7w1c0EYKgg1_8HF5qM7K8VopQPFoKjqQiZ7Y_OXuMKC4M0lvB2RrcgBELTtWcKNRb1iREPk0fhRnbY9-aTHc67u4fpMclfWCHNcAZYWhrskDgcoz1_dWLRz-lMimrU=w1322-h881-no?authuser=0',
-                        title='咖啡種類',
+                        title='咖啡品項',
                         text='美式黑咖啡',
                         actions=[
                             MessageTemplateAction(
@@ -900,7 +900,7 @@ def handle_message(event):
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fE6LowEQ1H-2PvIYslUpMvxny5ESML890w29Egc66AnXKURoPBuZO7lN7qUAJ-DmJrb22OnYCM9G3g0Cvz7s-p75yXL4x8n7LYp68mVidYIB64E_6dIrWaU0N0WqIS554fIMu7gWaubymv3pK6WEWI=w1322-h882-no?authuser=0',
-                        title='咖啡種類',
+                        title='咖啡品項',
                         text='拿鐵咖啡',
                         actions=[
                             MessageTemplateAction(
@@ -911,7 +911,7 @@ def handle_message(event):
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3c9tBJdawbOtyfAKEKfZj0NCy49E-Lb88ZmF0Y_NqrrZL_JLYnELa4fvds52W1AgYlI0pBCvJglrH__ewOq88I0HJQGdEU0-IYjqepeVxf6XUgWFLu8gpoX6mIQObE2oE2ZS-0DsO7cjE3LcRMZxPQo=w1226-h881-no?authuser=0',
-                        title='咖啡種類',
+                        title='咖啡品項',
                         text='焦糖瑪奇朵',
                         actions=[
                             MessageTemplateAction(
@@ -940,7 +940,7 @@ def handle_message(event):
                     # -----------------------------------------------------------------------------
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cRbnNSKT0cNwjJFvKTs69Vyjnhd6UshI8yUmvmcgiJoLBSFkqbu642xG_lzg6y8SsHnBSgTrEJZqJGCq_bCcEi6egFWGraM4j7XarQMMWUfC9f5hlh2uVx1CFaIonQiR5jo4ZPHvP4rnndi42Dsr6l=w1322-h881-no?authuser=0',
-                        title='果汁種類',
+                        title='果汁品項',
                         text='鮮草莓牛奶',
                         actions=[
                             MessageTemplateAction(
@@ -951,7 +951,7 @@ def handle_message(event):
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fyNH7AxPFSRwPL3ODeHltevTW0JVMQIS4EXYjh2_7WrC6SEGtcD0-zO3Fe9fw1u1rfg1LkXHrJijQQ84qahHUx2MIt5c-fjScTJzTnfoKKyjlpUfYEaiQ9Bbax3wfwp6qdqCYtKD1u_2pdZI-KunVK=w1322-h882-no?authuser=0',
-                        title='果汁種類',
+                        title='果汁品項',
                         text='蘋果蘇打',
                         actions=[
                             MessageTemplateAction(
@@ -962,7 +962,7 @@ def handle_message(event):
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3egd4uanIt6MeVyviSOnpQBG70yFOHz1nwK2qojtnHQYIDv2I1NMyKkK5BGtHRfA2anySvEzIwKOUKHJpWkJXez1NkvITZMxzp7hpJ1i6HNuOBEJHQ1lRhsXvtJ3t_T8wYN8cyz5loke7j163K_miT4=w1322-h881-no?authuser=0',
-                        title='果汁種類',
+                        title='果汁品項',
                         text='葡萄香檳',
                         actions=[
                             MessageTemplateAction(
@@ -991,7 +991,7 @@ def handle_message(event):
                     # -----------------------------------------------------------------------------
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3cGz84PikMg1eds-6rUlWIOonBiuxJQ1tYYdUNkhvhFcZo4a0bGjU_qw19XClEk-gLAoZ8UVoOQRwQyicgHiWvquoych899nCNClJWwzSpNgFpnX1uHb1eRSsGFwc9UeyR-45rCVYJMsi2-HnkFeK40=w1322-h881-no?authuser=0',
-                        title='甜點種類',
+                        title='甜點品項',
                         text='重乳酪蛋糕',
                         actions=[
                             MessageTemplateAction(
@@ -1002,7 +1002,7 @@ def handle_message(event):
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3doRdXaRT0U9rTm7OkCLmud1FLZbtozMheA9_-bj-YTk9qoXrlrKo6qqJvfFyDBaRdh6rjR7MnpfL4mBAAvhTv34sH--O2Jl8x_Wl9ZHhbsLpQvqZe4NzhntcufD4zFyJtbCx_U6Hz1u277WAQBmmU3=w1326-h882-no?authuser=0',
-                        title='甜點種類',
+                        title='甜點品項',
                         text='布朗尼',
                         actions=[
                             MessageTemplateAction(
@@ -1013,7 +1013,7 @@ def handle_message(event):
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://lh3.googleusercontent.com/pw/ACtC-3fPJaC-esphfrLd3p3GVbd_JGuP5mqgfrKQOGtKmRm-OihMdux8NdDD_qRZPe8etvAimXwS1lDQJjIwW2tGqM6DGpcp8zptai2r-tfZFMAcJO8k285nJbWWrMgRT5LpT7uEm4TtzXh9P3VBiAKOkby9=w1175-h881-no?authuser=0',
-                        title='甜點種類',
+                        title='甜點品項',
                         text='莓果鬆餅',
                         actions=[
                             MessageTemplateAction(
@@ -1042,11 +1042,11 @@ def handle_message(event):
                 actions=[
                     MessageTemplateAction(
                         label='是',
-                        text='我要訂位'
+                        text='訂位系統建置中，請撥打07-1234567讓專人為您服務喔'
                     ),
                     MessageTemplateAction(
                         label='否',
-                        text='藻咖啡'
+                        text='Zao Coffee期待未來與你相見的日子'
                     )
                 ]
             )
