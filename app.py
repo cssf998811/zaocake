@@ -710,7 +710,7 @@ def handle_message(event):
 # QAsection start
 ###############################################################################
     # QA主選單
-    elif user_message.find('QA') or user_message.find('藻咖啡') != -1:
+    elif user_message.find('QA') != -1 or user_message.find('藻咖啡') != -1:
 
         res_message = TemplateSendMessage(
             alt_text='歡迎光臨 Zao Coffee',
