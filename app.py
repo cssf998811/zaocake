@@ -710,7 +710,7 @@ def handle_message(event):
 # QAsection start
 ###############################################################################
     # QA主選單
-    elif user_message.find('QA') != -1 or user_message.find('主選單') != -1:
+    elif user_message.find('Zao Coffee') != -1 or user_message.find('主選單') != -1:
 
         res_message = TemplateSendMessage(
             alt_text='歡迎光臨 Zao Coffee',
@@ -766,6 +766,10 @@ def handle_message(event):
                                 label='看看菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                            
                         ]
                     ),
                     # =============================================================================
@@ -845,6 +849,10 @@ def handle_message(event):
                                 label='看看咖啡菜單',
                                 text='看看咖啡菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]                        
                     ),
                     CarouselColumn(
@@ -856,6 +864,10 @@ def handle_message(event):
                                 label='看看果汁菜單',
                                 text='看看果汁菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]                        
                     ),
                     CarouselColumn(
@@ -867,6 +879,10 @@ def handle_message(event):
                                 label='看看甜點菜單',
                                 text='看看甜點菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]                        
                     ),                                    
                     # =============================================================================
@@ -896,6 +912,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),
                     CarouselColumn(
@@ -907,6 +927,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),
                     CarouselColumn(
@@ -918,6 +942,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),                                      
                     # =============================================================================
@@ -947,6 +975,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),
                     CarouselColumn(
@@ -958,6 +990,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),
                     CarouselColumn(
@@ -969,6 +1005,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),                                      
                     # =============================================================================
@@ -998,6 +1038,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),
                     CarouselColumn(
@@ -1009,6 +1053,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),
                     CarouselColumn(
@@ -1020,6 +1068,10 @@ def handle_message(event):
                                 label='看看其他菜單',
                                 text='看看菜單'
                             ),
+                            MessageTemplateAction(
+                                label='回主選單',
+                                text='主選單'
+                            ),                                 
                         ]   
                     ),                                      
                     # =============================================================================
